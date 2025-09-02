@@ -1,0 +1,351 @@
+:root {
+  --bg-light: #f6f8fc;
+  --bg-dark: #23272f;
+  --card-light: #ffffff;
+  --card-dark: #31363b;
+  --accent1: linear-gradient(90deg,#48a6ff,#38e3b9);
+  --accent2: linear-gradient(90deg,#f75f86,#f9cb40);
+  --text-light: #222;
+  --text-dark: #f9f9f9;
+}
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-light);
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background: var(--bg-dark);
+  color: var(--text-dark);
+}
+
+header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 1.2rem;
+  background: var(--accent1);
+  color: #fff;
+  border-radius: 12px;
+}
+
+main {
+  max-width: 700px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+form#taskForm {
+  display: flex; gap: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+
+form input, form select {
+  border-radius: 8px;
+  border: 1px solid #bbb;
+  padding: 0.7rem;
+}
+
+form button {
+  background: var(--accent2);
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+form button:hover {
+  box-shadow: 0 0 8px #f75f8655;
+}
+
+.progress-section {
+  background: var(--card-light);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 2px 8px #d8dae6a0;
+}
+body.dark .progress-section {
+  background: var(--card-dark);
+}
+
+#progressBarContainer {
+  height: 18px;
+  background: #e3e7ee;
+  border-radius: 10px;
+  margin: 0.5rem 0;
+  overflow: hidden;
+}
+#progressBar {
+  height: 100%; width: 0;
+  background: var(--accent1);
+  border-radius: 10px;
+  transition: width 0.3s;
+}
+
+#filters {
+  display: flex; gap: 1rem; margin-bottom: 1rem;
+}
+
+ul#taskList {
+  list-style: none;
+  padding: 0;
+}
+
+ul#taskList li {
+  background: var(--card-light);
+  margin-bottom: 0.8rem;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 1px 5px #e9ecef60;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.3s;
+}
+body.dark ul#taskList li {
+  background: var(--card-dark);
+}
+
+ul#taskList li:hover {
+  background: #e4edff;
+}
+
+.task-actions button {
+  background: transparent; border: none; cursor: pointer; font-size: 1.1rem;
+  margin-left: 0.7rem;
+}
+
+.task-done {
+  text-decoration: line-through; color: #48a6ff;
+}
+
+.alarm-section {
+  margin: 2rem 0;
+  display: flex; align-items: center; gap: 1rem;
+}
+
+canvas#weeklyChart {
+  max-width: 100%;
+  height: 200px;
+  margin: 1.5rem 0;
+  background: var(--card-light);
+  border-radius: 10px;
+  box-shadow: 0 1px 4px #e9ecef50;
+}
+body.dark canvas#weeklyChart {
+  background: var(--card-dark);
+}
+
+footer {
+  text-align: center;
+  margin: 1.5rem 0;
+  color: #444;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  main {
+    padding: 0.8rem;
+  }
+  form#taskForm {
+    flex-direction: column;
+  }
+  #filters {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+body {
+  min-height: 100vh;
+  /* Multicolor linear gradient background */
+  background: linear-gradient(
+    120deg,
+    #ff6b6b,
+    #f9cb40,
+    #38e3b9,
+    #48a6ff,
+    #a950c8
+  );
+  background-size: 200% 200%; /* Makes room for animation */
+  animation: rainbowMove 10s linear infinite;
+}
+
+/* Animate the gradient for lively effect */
+@keyframes rainbowMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffe259 0%, #ffa751 100%);
+  box-shadow: 0 4px 16px rgba(255, 200, 70, 0.15), 0 2px 4px rgba(80, 80, 150, 0.1);
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.3s, transform 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.6rem;
+  overflow: hidden;
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  position: absolute;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.theme-toggle .icon-sun { opacity: 1; }
+.theme-toggle .icon-moon { opacity: 0; }
+
+body.dark .theme-toggle {
+  background: linear-gradient(135deg, #23272f 10%, #434855 100%);
+  box-shadow: 0 4px 16px rgba(108, 123, 255, 0.25), 0 2px 4px rgba(40, 40, 80, 0.12);
+}
+body.dark .theme-toggle .icon-sun { opacity: 0; }
+body.dark .theme-toggle .icon-moon { opacity: 1; }
+
+.theme-toggle:hover, .theme-toggle:focus {
+  box-shadow: 0 6px 24px rgba(255,200,70,0.3), 0 4px 8px rgba(80,80,150,0.15);
+  transform: scale(1.07) rotate(-5deg);
+  border: 2px solid #ffeba7;
+}
+
+.theme-toggle:active {
+  transform: scale(0.97);
+}
+select {
+  appearance: none;
+  background: linear-gradient(90deg, #38e3b9 0%, #48a6ff 70%);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(70, 150, 255, 0.17);
+  font-size: 1rem;
+  font-family: inherit;
+  padding: 0.6em 2.2em 0.6em 1em;
+  margin-right: 0.8em;
+  transition: box-shadow 0.3s, background 0.3s, transform 0.2s;
+  cursor: pointer;
+  outline: none;
+  font-weight: 500;
+  position: relative;
+}
+
+select:hover,
+select:focus {
+  background: linear-gradient(90deg, #f9cb40 20%, #f75f86 80%);
+  box-shadow: 0 8px 32px rgba(180, 80, 150, 0.22), 0 4px 12px rgba(80, 255, 150, 0.12);
+  transform: scale(1.05);
+}
+
+/* Custom arrow style for select */
+select {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="blue" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 1em center;
+  background-size: 1.1em;
+}
+
+body.dark select {
+  background: linear-gradient(90deg, #23272f 20%, #434855 80%);
+  color: #f9cb40;
+  box-shadow: 0 4px 20px rgba(108, 123, 255, 0.23);
+}
+body.dark select:hover,
+body.dark select:focus {
+  background: linear-gradient(90deg, #48a6ff 10%, #a950c8 90%);
+}
+/* Style the dropdown options */
+select option {
+  color: #222; /* Dark text for readability */
+  background: #fff; /* Light background for options */
+  padding: 0.5em 1em;
+}
+
+/* Dark mode dropdown options */
+body.dark select option {
+  color: #f9f9f9; /* Light text for dark mode */
+  background: #2f3340; /* Dark background for dark mode */
+}
+
+/* Fix dropdown menu background for better visibility in most browsers */
+select::-ms-expand {
+  display: none; /* Remove default arrow in IE */
+}
+
+/* For Firefox: Fix option colors */
+select:-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+.alarm-section {
+  background: linear-gradient(135deg, #48a6ff, #38e3b9);
+  padding: 1rem 1.2rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(56, 227, 185, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 400px;
+  margin: 2rem auto;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.alarm-section label {
+  flex-shrink: 0;
+}
+
+.alarm-section input[type="time"] {
+  background: #ffffffdd;
+  border: none;
+  border-radius: 10px;
+  padding: 0.4rem 0.75rem;
+  font-size: 1rem;
+  color: #333;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.alarm-section input[type="time"]:focus {
+  outline: none;
+  box-shadow: 0 0 8px #38e3b9aa;
+}
+
+.alarm-section button {
+  background: #f9cb40;
+  border: none;
+  color: #222;
+  font-weight: 700;
+  padding: 0.5rem 1.2rem;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px #f9cc4080;
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
+  flex-shrink: 0;
+}
+
+.alarm-section button:hover {
+  box-shadow: 0 6px 20px #f9cc408f;
+  transform: scale(1.06);
+}
+
+.alarm-section button:active {
+  transform: scale(0.97);
+}
+
+#alarmStatus {
+  flex-grow: 1;
+  font-style: italic;
+  text-align: right;
+  user-select: none;
+}
+
+
